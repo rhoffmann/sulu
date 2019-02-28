@@ -38,13 +38,13 @@ function transformResponseObject(data: Object) {
 }
 
 function transformResponseArray(data: Array<Object>) {
-    return data.map((value => {
+    return data.map((value) => {
         if (value instanceof Object) {
             return transformResponseObject(value);
         }
 
         return value;
-    }));
+    });
 }
 
 function transformRequestObject(data: Object): Object {
@@ -76,13 +76,13 @@ function transformRequestObject(data: Object): Object {
 }
 
 function transformRequestArray(data: Array<Object>) {
-    return data.map((value => {
+    return data.map((value) => {
         if (value instanceof Object) {
             return transformRequestObject(value);
         }
 
         return value;
-    }));
+    });
 }
 
 function transformRequestData(data: Object | Array<Object>): Object | Array<Object> {
