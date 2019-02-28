@@ -51,6 +51,15 @@ test('Should execute GET request and replace null with undefined', () => {
         test2: null,
         test3: '',
         test4: 'something',
+        test5: {
+            test5_id: 5,
+            test5_test: null,
+        },
+        test6: [
+            {id: 1, test: 'abc', test2: null},
+            {id: 2, test: 'abc', test2: 'Test2'},
+        ],
+        test7: ['test1', 'test2'],
     }));
     const promise = new Promise((resolve) => resolve(response));
 
@@ -63,6 +72,15 @@ test('Should execute GET request and replace null with undefined', () => {
             test2: undefined,
             test3: '',
             test4: 'something',
+            test5: {
+                test5_id: 5,
+                test5_test: undefined,
+            },
+            test6: [
+                {id: 1, test: 'abc', test2: undefined},
+                {id: 2, test: 'abc', test2: 'Test2'},
+            ],
+            test7: ['test1', 'test2'],
         });
     });
 
@@ -89,6 +107,17 @@ test('Should execute POST request and return JSON', () => {
         title: 'Titel',
         description: 'Description',
         test: undefined,
+        contacts: [
+            {id: 1, test: 'Titel', other: undefined},
+            {id: 2, test: 'Titel', other: 'Other'},
+        ],
+        address: {
+            id: 1,
+            title: 'Title',
+            other: 'Other',
+            other2: undefined,
+        },
+        types: ['type1', 'type2'],
     };
     const requestPromise = Requester.post('/some-url', data).then((response) => {
         expect(response).toEqual({test: '', value: 'test'});
@@ -100,6 +129,17 @@ test('Should execute POST request and return JSON', () => {
             title: 'Titel',
             description: 'Description',
             test: null,
+            contacts: [
+                {id: 1, test: 'Titel', other: null},
+                {id: 2, test: 'Titel', other: 'Other'},
+            ],
+            address: {
+                id: 1,
+                title: 'Title',
+                other: 'Other',
+                other2: null,
+            },
+            types: ['type1', 'type2'],
         }),
         credentials: 'same-origin',
         headers: {'Content-Type': 'application/json', 'X-Requested-With': 'XMLHttpRequest'},
